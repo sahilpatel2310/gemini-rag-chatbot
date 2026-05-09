@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your AI Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Nunito:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Your Personal Knowledge Base</p>
+        <h1>Chat with your documents, naturally.</h1>
+        <p class="lead">
+          Simply upload your files, and start asking questions. We'll find the right answers directly from your documents.
+        </p>
+      </div>
+
+    </section>
+
+    <section class="workspace">
+      <aside class="panel upload-panel">
+        <div class="panel-head">
+          <h2>Knowledge Base</h2>
+          <p>Add files you'd like to chat about.</p>
+        </div>
+
+        <form id="uploadForm" class="upload-form">
+          <label class="dropzone" for="fileInput">
+            <input id="fileInput" name="files" type="file" accept=".pdf,.txt" multiple>
+            <div class="dropzone-icon">📄</div>
+            <span class="dropzone-title">Drop your files here</span>
+            <span class="dropzone-subtitle">or click to browse (PDF, TXT)</span>
+          </label>
+          <button type="submit" class="primary-button">Upload & Learn</button>
+        </form>
+
+        <div id="uploadFeedback" class="status-box muted">No upload in progress.</div>
+
+        <div class="panel-head compact">
+          <h3>Your Files</h3>
+          <p>Documents currently available for chat.</p>
+        </div>
+        <ul id="fileList" class="file-list"></ul>
+      </aside>
+
+      <section class="panel chat-panel">
+        <div class="panel-head">
+          <h2>Conversation</h2>
+          <p>Ask anything about your uploaded documents.</p>
+        </div>
+
+        <div id="messages" class="messages">
+          <article class="message assistant intro">
+            <div class="message-role">AI Assistant</div>
+            <div class="message-body">
+              <p>Hi there! 👋 Upload some files on the left, and I'll be ready to answer your questions about them.</p>
+            </div>
+          </article>
+        </div>
+
+        <form id="chatForm" class="chat-form">
+          <textarea id="questionInput" rows="3" placeholder="Type your question here..." required></textarea>
+          <div class="chat-actions">
+            <span id="chatStatus" class="status-inline">Ready</span>
+            <button type="submit" class="primary-button">Send Message</button>
+          </div>
+        </form>
+      </section>
+    </section>
+  </main>
+
+  <template id="messageTemplate">
+    <article class="message">
+      <div class="message-role"></div>
+      <div class="message-body"></div>
+      <div class="sources"></div>
+    </article>
+  </template>
+
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
