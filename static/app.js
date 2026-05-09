@@ -155,7 +155,6 @@ function appendMessage(role, text, sources = []) {
   const article = fragment.querySelector(".message");
   const roleNode = fragment.querySelector(".message-role");
   const bodyNode = fragment.querySelector(".message-body");
-  const sourcesNode = fragment.querySelector(".sources");
 
   article.classList.add(role);
   roleNode.textContent = role === "user" ? "User" : "Assistant";
@@ -164,22 +163,6 @@ function appendMessage(role, text, sources = []) {
     bodyNode.innerHTML = marked.parse(text);
   } else {
     bodyNode.textContent = text;
-  }
-
-  if (Array.isArray(sources) && sources.length) {
-    for (const source of sources) {
-      const item = document.createElement("li");
-      item.className = "source-card";
-      const title = document.createElement("span");
-      title.className = "source-title";
-      title.textContent = source.page ? `${source.source} - page ${source.page}` : source.source;
-      const snippet = document.createElement("p");
-      snippet.textContent = source.snippet;
-      item.append(title, snippet);
-      sourcesNode.appendChild(item);
-    }
-  } else {
-    sourcesNode.remove();
   }
 
   messages.appendChild(fragment);
